@@ -1,0 +1,56 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /nlpweb
+spring:
+  application:
+    name: pzj-machine-platform
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/machine_learning_platform?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB   # 单个文件大小
+      max-request-size: 500MB # 单次请求文件总大小
+  cache:
+    type: redis
+  swagger:
+    enableSwagger: true
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    cache-enabled: false
+    # 打印sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:/mapper/*Mapping.xml
+  type-aliases-package: com.pzj.project.entity
+  global-config:
+    id-type: 5
+    field-strategy: 2
+    auto-set-db-type: true
+    db-column-underline: true
+    refresh-mapper: true
+    sql-parser-cache: true
+    logic-delete-value: 1
+    logic-not-delete-value: 0
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+minio:
+  endpoint: http://xxx
+  port: 9000
+  url:
+  accessKey: yaoqi
+  secretKey: yaoqi123
+  bucketName: nlp-web-dev
+  secure: false
