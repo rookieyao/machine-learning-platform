@@ -7,8 +7,8 @@ spring:
     name: pzj-machine-platform
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
-    url: jdbc:mysql://127.0.0.1:3306/machine_learning_platform?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    password: 123456
+    url: jdbc:mysql://39.98.64.182:3306/machine_learning_platform?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
   profiles:
     active: dev
