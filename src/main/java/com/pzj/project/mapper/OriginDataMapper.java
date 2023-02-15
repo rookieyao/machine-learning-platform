@@ -24,7 +24,9 @@ public interface OriginDataMapper {
             "<if test='precess_state!=null and precess_state!=\"\" '>" +
             "and precess_state=#{precessState}" +
             "</if>" +
-            "</where>"})
+            "</where>"+
+            "</script>"
+    })
     ArrayList<OriginDataModel> getByOriginData();
 
 }

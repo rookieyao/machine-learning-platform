@@ -19,7 +19,7 @@ public class OriginDataController extends ResponseResult {
     @Resource
     private OriginDataServiceImpl originDataService;
 
-    @GetMapping("getByOriginDataName")
+    @GetMapping("/getByOriginDataName")
     public Map<String,Object> getByOriginDataName(@RequestParam(name = "originDataName",required = false) String originDataName,
                                                   @RequestParam(name = "precessState",required = false) Byte precessState,
                                                   @RequestParam("pageNum") int pageNum,

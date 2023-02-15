@@ -1,9 +1,11 @@
 package com.pzj.project.service;
 
 import com.pzj.project.model.OriginDataModel;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public interface OriginDataService {
     /**
      * 查找原始数据名称
