@@ -2,6 +2,7 @@ package com.pzj.project.mapper;
 
 import com.pzj.project.model.OriginDataModel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -16,17 +17,13 @@ public interface OriginDataMapper {
      * @return
      */
     @Select({"<script>" +
-            "select * from origin_data" +
-            "<where>" +
+            "select * from origin_data where precess_state=#{precessState}" +
             "<if test='origin_data_name!=null and origin_data_name!=\"\" '>" +
             "and origin_data_name=#{originDataName}" +
             "</if>" +
-            "<if test='precess_state!=null and precess_state!=\"\" '>" +
-            "and precess_state=#{precessState}" +
-            "</if>" +
-            "</where>"+
             "</script>"
     })
-    ArrayList<OriginDataModel> getByOriginData(String originDataName,Byte precessState);
+    ArrayList<OriginDataModel> getByOriginData(@Param("originDataName")String originDataName,
+                                               @Param("precessState")Byte precessState);
 
 }
