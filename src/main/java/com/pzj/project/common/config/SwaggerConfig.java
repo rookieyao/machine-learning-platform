@@ -72,7 +72,7 @@ public class SwaggerConfig {
                 .enable(enableSwagger)
                 .select()
                 //controller接口项目地址
-                .apis(RequestHandlerSelectors.basePackage("com.skieer.aiplatform.ml.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.pzj.project.controller"))
                 .paths((s) -> {
                     for(String pathPrefix : excludedPathPrefix) {
                         if(StringUtils.startsWith(s, pathPrefix)) {
