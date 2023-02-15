@@ -16,15 +16,17 @@ public interface OriginDataMapper {
      * @return
      */
     @Select({"<script>" +
-            "select * from origin_data" +
+            "select * from origin_data " +
             "<where>" +
             "<if test='origin_data_name!=null and origin_data_name!=\"\" '>" +
-            "and origin_data_name=#{originDataName}" +
+            " and origin_data_name=#{originDataName}" +
             "</if>" +
             "<if test='precess_state!=null and precess_state!=\"\" '>" +
-            "and precess_state=#{precessState}" +
+            " and precess_state=#{precessState}" +
             "</if>" +
-            "</where>"})
+            "</where>"+
+            "</script>"
+            })
     ArrayList<OriginDataModel> getByOriginData();
 
 }

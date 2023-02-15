@@ -1,6 +1,7 @@
 package com.pzj.project.controller;
 
 import com.pzj.project.common.ResponseResult;
+import com.pzj.project.service.OriginDataService;
 import com.pzj.project.service.impl.OriginDataServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/originData")
 public class OriginDataController extends ResponseResult {
     @Resource
-    private OriginDataServiceImpl originDataService;
+    private OriginDataService originDataService;
 
     @GetMapping("getByOriginDataName")
     public Map<String,Object> getByOriginDataName(@RequestParam(name = "originDataName",required = false) String originDataName,
