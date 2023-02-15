@@ -25,7 +25,7 @@ public class OriginDataController extends ResponseResult {
                                                   @RequestParam(name = "precessState",required = false) Byte precessState,
                                                   @RequestParam("pageNum") int pageNum,
                                                   @RequestParam("lineNum") int lineNum){
-        return setResultOk(originDataService.getByOriginData());
+        return setResultOk(originDataService.getByOriginData(originDataName,precessState,pageNum,lineNum));
     }
 
 }

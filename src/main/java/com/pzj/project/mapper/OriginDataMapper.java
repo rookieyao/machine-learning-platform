@@ -27,6 +27,6 @@ public interface OriginDataMapper {
             "</where>"+
             "</script>"
     })
-    ArrayList<OriginDataModel> getByOriginData();
+    ArrayList<OriginDataModel> getByOriginData(String originDataName,Byte precessState);
 
 }

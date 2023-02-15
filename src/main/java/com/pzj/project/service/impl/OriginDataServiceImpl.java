@@ -18,8 +18,8 @@ public class OriginDataServiceImpl implements OriginDataService {
      * @return
      */
     @Override
-    public ArrayList<OriginDataModel> getByOriginData() {
-        return originDataMapper.getByOriginData();
+    public ArrayList<OriginDataModel> getByOriginData(String originDataName,Byte precessState,int pageNum,int lineNum) {
+        return originDataMapper.getByOriginData(originDataName,precessState);
     }
 
 //    /**
