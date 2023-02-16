@@ -47,6 +47,7 @@ public class SwaggerConfig {
     @Value("${spring.swagger.enableSwagger}")
     private boolean enableSwagger;
 
+
     /**
      * 接口黑名单，swagger 生成接口的时候，不生成黑名单中的接口
      */
