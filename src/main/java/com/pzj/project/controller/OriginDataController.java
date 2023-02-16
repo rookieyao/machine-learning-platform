@@ -22,10 +22,10 @@ public class OriginDataController extends ResponseResult {
 
     @GetMapping("/getByOriginDataName")
     public Map<String,Object> getByOriginDataName(@RequestParam(name = "originDataName",required = false) String originDataName,
-                                                  @RequestParam(name = "precessState",required = false) Byte precessState,
-                                                  @RequestParam("pageNum") int pageNum,
-                                                  @RequestParam("lineNum") int lineNum){
-        return setResultOk(originDataService.getByOriginData(originDataName,precessState,pageNum,lineNum));
+                                                  @RequestParam(name = "processState",required = false) Integer processState,
+                                                  @RequestParam("pageNum") Integer pageNum,
+                                                  @RequestParam("lineNum") Integer lineNum){
+        return setResultOk(originDataService.getByOriginData(originDataName,processState,pageNum,lineNum));
     }
 
 }

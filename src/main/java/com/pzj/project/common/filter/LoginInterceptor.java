@@ -83,8 +83,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     private static void printJson(HttpServletResponse response, Result result) {
-        String content = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
-        printContent(response, content);
+//        String content = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
+//        printContent(response, content);
     }
 
 

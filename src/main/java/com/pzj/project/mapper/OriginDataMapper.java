@@ -1,5 +1,6 @@
 package com.pzj.project.mapper;
 
+import com.pzj.project.model.OriginAppendDataModel;
 import com.pzj.project.model.OriginDataModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,13 +18,12 @@ public interface OriginDataMapper {
      * @return
      */
     @Select({"<script>" +
-            "select * from origin_data where precess_state=#{precessState}" +
-            "<if test='origin_data_name!=null and origin_data_name!=\"\" '>" +
+            "select * from origin_data where process_state=#{processState}" +
+            "<if test='originDataName!=null and originDataName!=\"\" '>" +
             "and origin_data_name=#{originDataName}" +
             "</if>" +
             "</script>"
     })
     ArrayList<OriginDataModel> getByOriginData(@Param("originDataName")String originDataName,
-                                               @Param("precessState")Byte precessState);
-
+                                               @Param("processState")Integer processState);
 }

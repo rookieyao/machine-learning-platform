@@ -13,7 +13,7 @@ public class OriginDataModel {
     /**
      * 原始数据名称
      */
-    private String originalDataName;
+    private String originDataName;
     /**
      * 文件大小,单位KB
      */
@@ -21,7 +21,7 @@ public class OriginDataModel {
     /**
      * 处理状态 1处理中 2处理成功 3处理失败
      */
-    private Byte process_state;
+    private long process_state;
     /**
      * 原始数据文件路径
      */
@@ -29,7 +29,7 @@ public class OriginDataModel {
     /**
      * 语种 1中文 2英文
      */
-    private Byte language;
+    private Integer language;
     /**
      * 数据源
      */
@@ -57,5 +57,5 @@ public class OriginDataModel {
     /**
      * 删除标识
      */
-    private Byte isDelete;
+    private Integer isDelete;
 }
