@@ -4,7 +4,7 @@ public class OriginAppendDataModel {
     /**
      * 原始数据追加id
      */
-    private long id;
+    private Long id;
     /**
      * 原始追加文件路径
      */

@@ -1,5 +1,6 @@
 package com.pzj.project.service.impl;
 
+import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.mapper.OriginDataMapper;
 import com.pzj.project.model.OriginAppendDataModel;
 import com.pzj.project.model.OriginDataModel;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Map;
 
 @Service
 public class OriginDataServiceImpl implements OriginDataService {
@@ -20,8 +22,12 @@ public class OriginDataServiceImpl implements OriginDataService {
      * @return
      */
     @Override
-    public ArrayList<OriginDataModel> getByOriginData(String originDataName,Integer processState,Integer pageNum,Integer lineNum) {
-        return originDataMapper.getByOriginData(originDataName,processState);
+    public ArrayList<OriginDataModel> getByOriginData(OriginDataDTO originDataDTO) {
+        Integer result_pageNo = originDataDTO.getPageNo();
+        Integer result_pageSize = originDataDTO.getPageSize();
+        Integer result = (result_pageNo-1)*result_pageSize;
+        originDataDTO.setPageNo(result);
+        return originDataMapper.getByOriginData(originDataDTO);
     }
 
 }

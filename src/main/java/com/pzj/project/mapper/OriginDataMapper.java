@@ -1,5 +1,6 @@
 package com.pzj.project.mapper;
 
+import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.model.OriginAppendDataModel;
 import com.pzj.project.model.OriginDataModel;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @Repository
 @Mapper
@@ -22,8 +24,8 @@ public interface OriginDataMapper {
             "<if test='originDataName!=null and originDataName!=\"\" '>" +
             "and origin_data_name=#{originDataName}" +
             "</if>" +
+            "limit #{pageNum},#{pageSize}" +
             "</script>"
     })
-    ArrayList<OriginDataModel> getByOriginData(@Param("originDataName")String originDataName,
-                                               @Param("processState")Integer processState);
+    ArrayList<OriginDataModel> getByOriginData(OriginDataDTO originDataDTO);
 }

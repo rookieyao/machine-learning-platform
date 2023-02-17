@@ -1,8 +1,8 @@
 package com.pzj.project.controller;
 
 import com.pzj.project.common.ResponseResult;
+import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.service.OriginDataService;
-import com.pzj.project.service.impl.OriginDataServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,12 +20,10 @@ public class OriginDataController extends ResponseResult {
     @Resource
     private OriginDataService originDataService;
 
-    @GetMapping("/getByOriginDataName")
-    public Map<String,Object> getByOriginDataName(@RequestParam(name = "originDataName",required = false) String originDataName,
-                                                  @RequestParam(name = "processState",required = false) Integer processState,
-                                                  @RequestParam("pageNum") Integer pageNum,
-                                                  @RequestParam("lineNum") Integer lineNum){
-        return setResultOk(originDataService.getByOriginData(originDataName,processState,pageNum,lineNum));
+    @GetMapping("/listPage")
+    public Map<String,Object> getByOriginDataName(@RequestBody OriginDataDTO originDataDTO){
+        // 只返回了第xx页的多少条数据
+        return setResultOk(originDataService.getByOriginData(originDataDTO));
     }
 
 }

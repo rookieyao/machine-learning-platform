@@ -9,7 +9,7 @@ public class OriginDataModel {
     /**
      * 主键id
      */
-    private Integer id;
+    private Long id;
     /**
      * 原始数据名称
      */
@@ -21,7 +21,7 @@ public class OriginDataModel {
     /**
      * 处理状态 1处理中 2处理成功 3处理失败
      */
-    private long process_state;
+    private Integer process_state;
     /**
      * 原始数据文件路径
      */

@@ -53,11 +53,11 @@ mybatis-plus:
     sql-parser-cache: true
     logic-delete-value: 1
     logic-not-delete-value: 0
-pagehelper:
-  helper-dialect: mysql
-  reasonable: true
-  support-methods-arguments: true
-  params: count=countsql
+#pagehelper:
+#  helper-dialect: mysql
+#  reasonable: true
+#  support-methods-arguments: true
+#  params: count=countsql
 
 minio:
   endpoint: http://xxx
