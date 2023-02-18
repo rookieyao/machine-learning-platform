@@ -10,37 +10,52 @@ import java.sql.Timestamp;
 import lombok.NoArgsConstructor;
 
 /**
- * (TrainDataVersion)��ʵ����
+ * (OriginData)��ʵ����
  *
  * @author makejava
- * @since 2023-02-15 21:52:48
+ * @since 2023-02-18 12:11:12
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel("")
-@TableName(value = "train_data_version")
-public class TrainDataVersion {
+@TableName(value = "table:origin_data")
+public class OriginData {
     /**
      * 主键id
      **/
     private Long id;
     
     /**
-     * 训练数据id
+     * 原始数据名称
      **/
-    private Long trainDataId;
+    private String originDataName;
     
     /**
-     * 导入状态 1导入中 2导入成功 3导入失败
+     * 文件大小，单位KB
      **/
-    private Integer importState;
+    private String fileSize;
     
     /**
-     * 数据集版本
+     * 处理状态 0处理中 1处理成功 2处理失败
      **/
-    private String dataCollectionVersion;
+    private Integer processState;
+    
+    /**
+     * 原始数据文件路径
+     **/
+    private String originFilePath;
+    
+    /**
+     * 语种 1中文 2英文
+     **/
+    private Integer language;
+    
+    /**
+     * 数据源
+     **/
+    private String dataSource;
     
     /**
      * 备注

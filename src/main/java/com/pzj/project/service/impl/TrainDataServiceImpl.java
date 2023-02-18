@@ -2,8 +2,11 @@ package com.pzj.project.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pzj.project.TrainDataVersionVo;
+import com.pzj.project.dto.TrainDataDTO;
 import com.pzj.project.mapper.TrainDataMapper;
 import com.pzj.project.entity.TrainData;
+import com.pzj.project.model.User;
 import com.pzj.project.service.TrainDataService;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +39,15 @@ public class TrainDataServiceImpl extends ServiceImpl<TrainDataMapper, TrainData
             trainDataMapper.deleteBatchIds(idList);
         }
     }
-    
-    
+
+    @Override
+    public List<TrainDataVersionVo> listPage(User user, TrainDataDTO trainDataDTO) {
+        String userId = user.getUserId();
+        List<TrainDataVersionVo> trainDataVersionVoList = trainDataMapper.listPage(userId, trainDataDTO);
+        return trainDataVersionVoList;
+    }
+
+
 }
 
 

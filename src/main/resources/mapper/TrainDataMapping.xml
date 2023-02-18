@@ -8,6 +8,45 @@
         <result property="tagLanguage" column="tag_language" jdbcType="INTEGER"/>
         <result property="projectType" column="project_type" jdbcType="INTEGER"/>
     </resultMap>
+    <select id="listPage" resultType="com.pzj.project.TrainDataVersionVo">
+
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        t2.id,
+        t2.train_data_id trainDataId,
+        t1.data_collection_name dataCollectionName,
+        t1.project_type projectType,
+        t1.tag_language labelLanguage,
+        t2.import_state importState,
+        t2.data_collection_version dataSetVersion,
+        t2.remark,
+        t2.data_type dataType,
+        t2.create_time createTime,
+        t2.creator
+        FROM
+        train_data t1
+        LEFT JOIN train_data_version t2 ON t1.id = t2.train_data_id
+        WHERE
+        t2.is_deleted = 0
+        <!-- t1.user_id = #{userId} -->
+        <if test="trainDataDTO.dataCollectionName != null and trainDataDTO.dataCollectionName != ''">
+            and t1.data_collection_name like concat('%',#{trainDataDTO.dataCollectionName},'%')
+        </if>
+<!--        <if test="trainDataDTO.importState != null">-->
+<!--            and t2.import_state = #{trainDataDTO.importState}-->
+<!--        </if>-->
+        ORDER BY
+        t2.create_time DESC
+        ) v
+        GROUP BY
+        v.dataCollectionName,
+        v.labelLanguage,
+        v.projectType
+        ORDER BY v.createTime DESC
+    </select>
 
 </mapper>
 

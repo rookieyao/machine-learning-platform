@@ -1,19 +1,23 @@
 package com.pzj.project.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pzj.project.dto.OriginDataDTO;
-import com.pzj.project.model.OriginAppendDataModel;
 import com.pzj.project.model.OriginDataModel;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import com.pzj.project.entity.OriginData;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-@Repository
+/**
+ * (OriginData)�����ݿ���ʲ�
+ *
+ * @author makejava
+ * @since 2023-02-18 12:11:12
+ */
 @Mapper
-public interface OriginDataMapper {
+public interface OriginDataMapper extends BaseMapper<OriginData> {
+
     /**
      * 查找原始数据名称
      *
@@ -29,3 +33,5 @@ public interface OriginDataMapper {
     })
     ArrayList<OriginDataModel> getByOriginData(OriginDataDTO originDataDTO);
 }
+
+

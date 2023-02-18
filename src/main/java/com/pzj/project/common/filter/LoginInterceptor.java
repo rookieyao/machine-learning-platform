@@ -39,14 +39,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
         if(StringUtils.isAnyBlank(userId,userName)){
             Result result = Result.error(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage());
-//            printJson(response, result);
-//            return false;
+            printJson(response, result);
+            return false;
         }
 
-//        User user = new User();
-//        user.setUserId(userId);user.setUserName(userName);
+        User user = new User();
+        user.setUserId(userId);user.setUserName(userName);
 
-//        stringRedisTemplate.opsForValue().set(userId, JSONObject.toJSONString(user));
+        stringRedisTemplate.opsForValue().set(userId, JSONObject.toJSONString(user));
         return true;
     }
 

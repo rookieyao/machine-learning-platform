@@ -4,10 +4,13 @@ package com.pzj.project.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pzj.project.TrainDataVersionVo;
 import com.pzj.project.common.Result;
+import com.pzj.project.common.annotation.CurrentUser;
 import com.pzj.project.common.enums.ErrorCodeEnum;
 import com.pzj.project.dto.TrainDataDTO;
 import com.pzj.project.entity.TrainData;
+import com.pzj.project.model.User;
 import com.pzj.project.service.TrainDataService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
@@ -51,7 +54,7 @@ public class TrainDataController {
      * ֻ�ܲ�ѯ�Լ���
      **/
     @PostMapping("/listPage")
-    public Result<?> listPage(@RequestBody TrainDataDTO trainDataDTO) {
+    public Result<?> listPage(@CurrentUser User user, @RequestBody TrainDataDTO trainDataDTO) {
         
         PageHelper.startPage(trainDataDTO.getPageNum(),trainDataDTO.getPageSize());
         //������ѯ
@@ -65,8 +68,9 @@ public class TrainDataController {
         //����
         // queryWrapper.lambda().orderByDesc(TrainData::getCreateTime);
         //ִ�в�ѯ
-        List<TrainData> list = trainDataService.list(queryWrapper);
-        PageInfo<TrainData> pageInfo = new PageInfo<>(list);
+        //执行查询
+        List<TrainDataVersionVo> list = trainDataService.listPage(user, trainDataDTO);
+        PageInfo<TrainDataVersionVo> pageInfo = new PageInfo<>(list);
         //��װ��ѯ���
         return Result.success(pageInfo);
     }

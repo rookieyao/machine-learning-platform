@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzj.project.mapper.OriginDataMapper">
+
+    <resultMap type="com.pzj.project.entity.OriginData" id="OriginDataMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="originDataName" column="origin_data_name" jdbcType="VARCHAR"/>
+        <result property="fileSize" column="file_size" jdbcType="VARCHAR"/>
+        <result property="processState" column="process_state" jdbcType="INTEGER"/>
+        <result property="originFilePath" column="origin_file_path" jdbcType="VARCHAR"/>
+        <result property="language" column="language" jdbcType="INTEGER"/>
+        <result property="dataSource" column="data_source" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updator" column="updator" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>
+
+
