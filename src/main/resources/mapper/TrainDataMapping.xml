@@ -8,7 +8,7 @@
         <result property="tagLanguage" column="tag_language" jdbcType="INTEGER"/>
         <result property="projectType" column="project_type" jdbcType="INTEGER"/>
     </resultMap>
-    <select id="listPage" resultType="com.pzj.project.TrainDataVersionVo">
+    <select id="listPage" resultType="com.pzj.project.vo.TrainDataVersionVo">
 
         SELECT
         *

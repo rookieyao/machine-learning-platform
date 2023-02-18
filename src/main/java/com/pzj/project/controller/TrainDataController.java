@@ -4,7 +4,7 @@ package com.pzj.project.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pzj.project.TrainDataVersionVo;
+import com.pzj.project.vo.TrainDataVersionVo;
 import com.pzj.project.common.Result;
 import com.pzj.project.common.annotation.CurrentUser;
 import com.pzj.project.common.enums.ErrorCodeEnum;

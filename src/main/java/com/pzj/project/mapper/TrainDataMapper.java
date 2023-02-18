@@ -1,7 +1,7 @@
 package com.pzj.project.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.pzj.project.TrainDataVersionVo;
+import com.pzj.project.vo.TrainDataVersionVo;
 import com.pzj.project.dto.TrainDataDTO;
 import org.apache.ibatis.annotations.Mapper;
 import com.pzj.project.entity.TrainData;

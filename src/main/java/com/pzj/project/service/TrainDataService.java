@@ -1,7 +1,7 @@
 package com.pzj.project.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.pzj.project.TrainDataVersionVo;
+import com.pzj.project.vo.TrainDataVersionVo;
 import com.pzj.project.dto.TrainDataDTO;
 import com.pzj.project.entity.TrainData;
 import com.pzj.project.model.User;

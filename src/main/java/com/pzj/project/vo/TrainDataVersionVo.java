@@ -1,4 +1,4 @@
-package com.pzj.project;
+package com.pzj.project.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
