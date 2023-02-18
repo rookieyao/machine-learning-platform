@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzj.project.mapper.TrainModelVersionMapper">
+
+    <resultMap type="com.pzj.project.entity.TrainModelVersion" id="TrainModelVersionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="trainModelId" column="train_model_id" jdbcType="INTEGER"/>
+        <result property="modelType" column="model_type" jdbcType="INTEGER"/>
+        <result property="modelVersion" column="model_version" jdbcType="VARCHAR"/>
+        <result property="wordVectorName" column="word_vector_name" jdbcType="VARCHAR"/>
+        <result property="trainDataName" column="train_data_name" jdbcType="VARCHAR"/>
+        <result property="modelState" column="model_state" jdbcType="INTEGER"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updator" column="updator" jdbcType="VARCHAR"/>
+        <result property="updaterTime" column="updater_time" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>
+
+
