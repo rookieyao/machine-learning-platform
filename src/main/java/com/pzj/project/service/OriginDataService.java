@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.entity.OriginData;
 import com.pzj.project.model.OriginDataModel;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
  * @author makejava
  * @since 2023-02-18 12:11:12
  */
+@Service
 public interface OriginDataService extends IService<OriginData> {
 
     /**
@@ -21,6 +23,10 @@ public interface OriginDataService extends IService<OriginData> {
     void deleteByIds(String ids);
 
     ArrayList<OriginDataModel> getByOriginData(OriginDataDTO originDataDTO);
+
+    int delById(Long id);
+
+    int insertData(OriginData originData);
     
 }
 

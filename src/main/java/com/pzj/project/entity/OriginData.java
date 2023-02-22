@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import java.sql.Timestamp;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * (OriginData)��ʵ����

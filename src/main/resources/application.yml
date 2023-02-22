@@ -60,10 +60,10 @@ pagehelper:
   params: count=countsql
 
 minio:
-  endpoint: http://xxx
-  port: 9000
+  endpoint: http://39.98.64.182
+  port: 9090
   url:
-  accessKey: yaoqi
-  secretKey: yaoqi123
+  accessKey: pzj
+  secretKey: pzj123456
   bucketName: nlp-web-dev
   secure: false

@@ -10,7 +10,9 @@ import com.pzj.project.entity.OriginData;
 import com.pzj.project.entity.TrainData;
 import com.pzj.project.service.OriginDataService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Insert;
 import org.hibernate.boot.jaxb.Origin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,7 +32,7 @@ public class OriginDataController extends ResponseResult {
     private OriginDataService originDataService;
 
     @PostMapping("/listPage")
-    public Result<?> getByOriginDataName(@RequestBody OriginDataDTO originDataDTO){
+    public Result<?> getByOriginDataName(@RequestBody(required = false) OriginDataDTO originDataDTO){
 
         PageHelper.startPage(originDataDTO.getPageNum(),originDataDTO.getPageSize());
         //������ѯ
@@ -53,6 +55,16 @@ public class OriginDataController extends ResponseResult {
         PageInfo<OriginData> pageInfo = new PageInfo<>(list);
         //��װ��ѯ���
         return Result.success(pageInfo);
+    }
+
+    @DeleteMapping("/delData/{id}")
+    public Result<?> delById (@PathVariable("id") Long id){
+        return originDataService.delById(id) > 0 ? Result.success() : Result.error("删除数据失败");
+    }
+
+    @PostMapping("/insetData")
+    public Result<?> insertData(OriginData originData){
+        return Result.success(originDataService.insertData(originData));
     }
 
 }

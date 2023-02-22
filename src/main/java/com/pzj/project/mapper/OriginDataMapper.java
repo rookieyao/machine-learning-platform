@@ -3,9 +3,8 @@ package com.pzj.project.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.model.OriginDataModel;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
 import com.pzj.project.entity.OriginData;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.ArrayList;
 
@@ -32,6 +31,9 @@ public interface OriginDataMapper extends BaseMapper<OriginData> {
             "</script>"
     })
     ArrayList<OriginDataModel> getByOriginData(OriginDataDTO originDataDTO);
+
+    @Update("UPDATE origin_data SET is_delete=1 WHERE `id` = #{id};")
+    int delById(@Param("id") Long id);
 }
 
 
