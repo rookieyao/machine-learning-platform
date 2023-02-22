@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzj.project.mapper.ProjectServeMapper">
+
+    <resultMap type="com.pzj.project.entity.ProjectServe" id="ProjectServeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="serveName" column="serve_name" jdbcType="VARCHAR"/>
+        <result property="projectName" column="project_name" jdbcType="VARCHAR"/>
+        <result property="projectType" column="project_type" jdbcType="INTEGER"/>
+        <result property="congigurationInfo" column="congiguration_info" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>
+
+

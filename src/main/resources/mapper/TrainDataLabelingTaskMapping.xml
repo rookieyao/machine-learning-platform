@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzj.project.mapper.TrainDataLabelingTaskMapper">
+
+    <resultMap type="com.pzj.project.entity.TrainDataLabelingTask" id="TrainDataLabelingTaskMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="trainDataVersionId" column="train_data_version_id" jdbcType="INTEGER"/>
+        <result property="labelingTaskId" column="labeling_task_id" jdbcType="VARCHAR"/>
+        <result property="labelTaskName" column="label_task_name" jdbcType="VARCHAR"/>
+        <result property="labelTaskType" column="label_task_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>
+
+

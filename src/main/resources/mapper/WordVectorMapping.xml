@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzj.project.mapper.WordVectorMapper">
+
+    <resultMap type="com.pzj.project.entity.WordVector" id="WordVectorMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="wordVectorName" column="word_vector_name" jdbcType="VARCHAR"/>
+        <result property="vectorDimension" column="vector_dimension" jdbcType="INTEGER"/>
+        <result property="windowSize" column="window_size" jdbcType="INTEGER"/>
+        <result property="minimumWordFrequency" column="minimum_word_frequency" jdbcType="INTEGER"/>
+        <result property="vectorType" column="vector_type" jdbcType="INTEGER"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="taskState" column="task_state" jdbcType="INTEGER"/>
+        <result property="currentProcessingProgress" column="current_processing_progress" jdbcType="VARCHAR"/>
+        <result property="dataIsNew" column="data_is_new" jdbcType="INTEGER"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updator" column="updator" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>
+
+

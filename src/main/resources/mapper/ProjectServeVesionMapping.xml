@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzj.project.mapper.ProjectServeVesionMapper">
+
+    <resultMap type="com.pzj.project.entity.ProjectServeVesion" id="ProjectServeVesionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="serveVersion" column="serve_version" jdbcType="VARCHAR"/>
+        <result property="modelType" column="model_type" jdbcType="VARCHAR"/>
+        <result property="evaluateState" column="evaluate_state" jdbcType="INTEGER"/>
+        <result property="serveState" column="serve_state" jdbcType="INTEGER"/>
+        <result property="deployEnvironment" column="deploy_environment" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updator" column="updator" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>
+
+
