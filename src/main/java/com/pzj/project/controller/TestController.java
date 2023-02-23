@@ -1,10 +1,10 @@
 package com.pzj.project.controller;
 
+import com.pzj.project.common.minio.MinIOService;
 import com.pzj.project.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  * @Description
  **/
 
+@CrossOrigin
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -21,9 +22,14 @@ public class TestController {
     @Resource
     TestService testService;
 
-    @GetMapping("/hello")
-    public String sayHello(){
+    @Resource
+    MinIOService minIOService;
 
-        return testService.say();
+    @PostMapping("/hello")
+    public String sayHello(@RequestParam("file") MultipartFile multipartFile) throws Exception{
+
+        minIOService.uploadMultipartFile("/test/test.txt", multipartFile);
+
+        return "ok";
     }
 }

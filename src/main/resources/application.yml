@@ -61,7 +61,7 @@ pagehelper:
 
 minio:
   endpoint: http://39.98.64.182
-  port: 9090
+  port: 9000
   url:
   accessKey: pzj
   secretKey: pzj123456
