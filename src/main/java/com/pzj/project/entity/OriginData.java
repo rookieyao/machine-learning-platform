@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel("")
-@TableName(value = "table:origin_data")
+@TableName(value = "origin_data")
 public class OriginData {
     /**
      * 主键id

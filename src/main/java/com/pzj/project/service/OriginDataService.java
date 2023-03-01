@@ -5,7 +5,9 @@ import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.entity.OriginData;
 import com.pzj.project.model.OriginDataModel;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 /**
@@ -24,9 +26,9 @@ public interface OriginDataService extends IService<OriginData> {
 
     ArrayList<OriginDataModel> getByOriginData(OriginDataDTO originDataDTO);
 
-    int delById(Long id);
+//    int delById(Long id);
 
-    int insertData(OriginData originData);
+//    int insertData(OriginData originData, MultipartFile[] multipartFiles);
     
 }
 

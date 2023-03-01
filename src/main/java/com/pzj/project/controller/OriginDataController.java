@@ -1,21 +1,29 @@
 package com.pzj.project.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pzj.project.common.ResponseResult;
 import com.pzj.project.common.Result;
+import com.pzj.project.common.minio.MinIOService;
 import com.pzj.project.dto.OriginDataDTO;
+import com.pzj.project.entity.OriginAppendDataFile;
 import com.pzj.project.entity.OriginData;
 import com.pzj.project.entity.TrainData;
+import com.pzj.project.service.OriginAppendDataFileService;
 import com.pzj.project.service.OriginDataService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Insert;
 import org.hibernate.boot.jaxb.Origin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +38,12 @@ import java.util.Map;
 public class OriginDataController extends ResponseResult {
     @Resource
     private OriginDataService originDataService;
+
+    @Resource
+    private OriginAppendDataFileService originAppendDataFileService;
+
+    @Resource
+    MinIOService minIOService;
 
     @PostMapping("/listPage")
     public Result<?> getByOriginDataName(@RequestBody(required = false) OriginDataDTO originDataDTO){
@@ -59,12 +73,55 @@ public class OriginDataController extends ResponseResult {
 
     @DeleteMapping("/delData/{id}")
     public Result<?> delById (@PathVariable("id") Long id){
-        return originDataService.delById(id) > 0 ? Result.success() : Result.error("删除数据失败");
+        try {
+            OriginData byId = originDataService.getById(id);
+            //当将字段更新为null时，字段值不会更新
+//        byId.setIsDelete(1);
+//        originDataService.updateById(byId);
+
+            LambdaUpdateWrapper<OriginData> updateWrapper = new LambdaUpdateWrapper<>();
+            //找到该id的数据
+            updateWrapper.eq(OriginData::getId,id);
+            //修改该id的is_delete值
+            updateWrapper.set(OriginData::getIsDelete,1);
+            //提交修改
+            originDataService.update(byId,updateWrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error(e.getMessage());
+        }
+        return Result.success();
     }
 
     @PostMapping("/insetData")
-    public Result<?> insertData(OriginData originData){
-        return Result.success(originDataService.insertData(originData));
+    public Result<?> insertData(OriginData originData,
+                                @RequestParam(value = "files") MultipartFile[] multipartFiles){
+        originData.setOriginFilePath("/file");
+        originDataService.save(originData);
+        //originAppendDataFile新增
+        String res = null;
+        try{
+            //循环存入文件
+            Arrays.stream(multipartFiles).forEach(multipartFile -> {
+                try {
+                    //获取文件名称
+                    String fileName = multipartFile.getOriginalFilename();
+                    minIOService.uploadMultipartFile("/file/" + fileName,multipartFile);
+                    System.out.println(fileName);
+                    OriginAppendDataFile originAppendDataFile = new OriginAppendDataFile();
+                    originAppendDataFile.setOriginDataId(originData.getId());
+                    originAppendDataFile.setOriginAppendFilePath("/" + fileName);
+                    originAppendDataFileService.save(originAppendDataFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            res = "上传失败";
+            System.out.println(res);
+        }
+        return Result.success();
     }
 
 }

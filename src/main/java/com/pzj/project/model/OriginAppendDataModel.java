@@ -1,5 +1,8 @@
 package com.pzj.project.model;
 
+import lombok.Data;
+
+@Data
 public class OriginAppendDataModel {
     /**
      * 原始数据追加id
@@ -12,7 +15,7 @@ public class OriginAppendDataModel {
     /**
      * 原始数据id
      */
-    private Integer originDataID;
+    private Long originDataID;
     /**
      * 原始追加文件大小
      */
