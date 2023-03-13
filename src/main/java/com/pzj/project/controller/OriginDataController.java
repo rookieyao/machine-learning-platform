@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pzj.project.common.FileCondition;
 import com.pzj.project.common.ResponseResult;
 import com.pzj.project.common.Result;
+import com.pzj.project.common.enums.OriginDataProcessStateEnum;
 import com.pzj.project.common.minio.MinIOService;
 import com.pzj.project.dto.OriginDataDTO;
 import com.pzj.project.entity.OriginAppendDataFile;
@@ -46,19 +48,19 @@ public class OriginDataController extends ResponseResult {
     MinIOService minIOService;
 
     @PostMapping("/listPage")
-    public Result<?> getByOriginDataName(@RequestBody(required = false) OriginDataDTO originDataDTO){
+    public Result<?> getByOriginDataName(@RequestBody(required = false) OriginDataDTO originDataDTO) {
 
-        PageHelper.startPage(originDataDTO.getPageNum(),originDataDTO.getPageSize());
+        PageHelper.startPage(originDataDTO.getPageNum(), originDataDTO.getPageSize());
         //������ѯ
         QueryWrapper<OriginData> queryWrapper = new QueryWrapper();
 
         String originDataName = originDataDTO.getOriginDataName();
-        if(StringUtils.isNotBlank(originDataName)){
+        if (StringUtils.isNotBlank(originDataName)) {
             queryWrapper.lambda().eq(OriginData::getOriginDataName, originDataName);
         }
 
         Integer processState = originDataDTO.getProcessState();
-        if(processState != null){
+        if (processState != null) {
             queryWrapper.lambda().eq(OriginData::getProcessState, processState.intValue());
         }
 
@@ -72,7 +74,7 @@ public class OriginDataController extends ResponseResult {
     }
 
     @DeleteMapping("/delData/{id}")
-    public Result<?> delById (@PathVariable("id") Long id){
+    public Result<?> delById(@PathVariable("id") Long id) {
         try {
             OriginData byId = originDataService.getById(id);
             //当将字段更新为null时，字段值不会更新
@@ -81,11 +83,11 @@ public class OriginDataController extends ResponseResult {
 
             LambdaUpdateWrapper<OriginData> updateWrapper = new LambdaUpdateWrapper<>();
             //找到该id的数据
-            updateWrapper.eq(OriginData::getId,id);
+            updateWrapper.eq(OriginData::getId, id);
             //修改该id的is_delete值
-            updateWrapper.set(OriginData::getIsDelete,1);
+            updateWrapper.set(OriginData::getIsDelete, 1);
             //提交修改
-            originDataService.update(byId,updateWrapper);
+            originDataService.update(byId, updateWrapper);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.error(e.getMessage());
@@ -95,28 +97,32 @@ public class OriginDataController extends ResponseResult {
 
     @PostMapping("/insetData")
     public Result<?> insertData(OriginData originData,
-                                @RequestParam(value = "files") MultipartFile[] multipartFiles){
+                                @RequestParam(value = "files") MultipartFile[] multipartFiles) {
+        originData.setProcessState(OriginDataProcessStateEnum.STATE_ONE.getStateNum());
         originData.setOriginFilePath("/file");
         originDataService.save(originData);
         //originAppendDataFile新增
         String res = null;
-        try{
+        try {
             //循环存入文件
             Arrays.stream(multipartFiles).forEach(multipartFile -> {
                 try {
                     //获取文件名称
                     String fileName = multipartFile.getOriginalFilename();
-                    minIOService.uploadMultipartFile("/file/" + fileName,multipartFile);
-                    System.out.println(fileName);
+                    minIOService.uploadMultipartFile("/file/" + fileName, multipartFile);
+                    //将数据存入origin
                     OriginAppendDataFile originAppendDataFile = new OriginAppendDataFile();
                     originAppendDataFile.setOriginDataId(originData.getId());
                     originAppendDataFile.setOriginAppendFilePath("/" + fileName);
+                    originAppendDataFile.setOriginAppendFileSize(FileCondition.getFileSize(multipartFile));
+                    originAppendDataFile.setLineNum(FileCondition.getFileLineNum(multipartFile));
                     originAppendDataFileService.save(originAppendDataFile);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             res = "上传失败";
             System.out.println(res);
